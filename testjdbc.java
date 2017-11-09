@@ -1,3 +1,10 @@
+/*
+MySQL in WAMP
+uses mysql-connector-5.1.44
+@Written in:: NetBeans8.2
+@First Complete:: 09/11/17
+@author :: Kumar Prateek Viraj
+*/
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -48,7 +55,7 @@ class student{
          }
     }   
     void inputValues(){
-        int total=0;
+        int total;
        // System.out.println("\nEnter Roll: ");
         Scanner reader=new Scanner(System.in);
         //int roll=reader.nextInt();
@@ -97,37 +104,88 @@ class student{
         }
         return count;
     }
-    int AverageInSubject(){
-        int average=0;
-        int choice;
-        System.out.println("Find Avereage of:\n\n1.Suub1\n2.Sub2\n3.Sub3");
-        Scanner reader=new Scanner(System.in);
-        choice = reader.nextInt();
-        String findAverage = "SELECT SUM(sub"+choice+") FROM result";
+    void AverageInSubject(){
         try{
-        stmt=conn.createStatement();
-        ResultSet rs=stmt.executeQuery(findAverage);
-        rs.next();
-        String avg=rs.getString(1);
-        average=Integer.parseInt(avg)/totalStudents();
-        }catch(Exception e){
-            System.out.println("Error!");
-        }
-        return average; 
-    }
+       for(int i=1;i<4;i++){
+       String subAverage="SELECT AVG(sub"+i+") FROM result";
+       stmt=conn.createStatement();
+       ResultSet subav=stmt.executeQuery(subAverage);
+       subav.next();
+        System.out.println("Average marks in subj"+i+":: "+subav.getInt(1));
+       }
+       }catch(SQLException e){
+       e.printStackTrace();
+       }
+   }
    String findTopper(){
         String topper=null;
-        String query="SELECT name FROM result WHERE total=("
+        int roll=0;
+        String query="SELECT roll,name FROM result WHERE total=("
                      + "SELECT MAX(total) FROM result)";
         try{
         stmt=conn.createStatement();
         ResultSet rs=stmt.executeQuery(query);
-        rs.next();
-        topper=rs.getString(1);
+        while(rs.next()){
+        roll=rs.getInt(1);
+        topper=rs.getString(2);
+        } System.out.println("Roll is: "+roll);
         }catch(SQLException e){
         System.out.println("Error!");
         }
       return topper;
+   }
+   void secondThird(){
+       int topperRoll=0;
+       String name=null;
+       String queryForSecond="SELECT roll,name "
+                   + "FROM result ORDER BY total DESC LIMIT 1,1";
+       String queryForThird="SELECT roll,name "
+                   + "FROM result ORDER BY total DESC LIMIT 2,1";
+       try{
+           stmt=conn.createStatement();
+           ResultSet rs1 = stmt.executeQuery(queryForSecond);
+            while(rs1.next()){
+            topperRoll=rs1.getInt(1);
+            name=rs1.getString(2);
+            System.out.println("Second Topper:: Name : "+name+" Roll: "+topperRoll);
+           }
+            ResultSet rs2 = stmt.executeQuery(queryForThird);
+           while(rs2.next()){
+            topperRoll=rs2.getInt(1);
+            name=rs2.getString(2);
+            System.out.println("\nThird Topper:: Name : "+name+" Roll: "+topperRoll);
+           }
+       }catch(SQLException ex){
+       System.out.println("Some error "+ex);
+       }
+       
+   }
+   void subjectToppers(int subjNum){
+       String topper=null;
+       String query="SELECT roll,name FROM result WHERE sub"+subjNum+"=("
+                     + "SELECT MAX(sub"+subjNum+") FROM result)";
+       try{
+           stmt=conn.createStatement();
+           ResultSet rs=stmt.executeQuery(query);
+           while(rs.next()){
+           System.out.println("Subj"+subjNum+" Topper::"
+                   + " Name"+rs.getString(2)+" Roll no: "+rs.getInt(1));
+           }
+       }catch(SQLException e){
+           e.printStackTrace();
+       }
+   }
+   void averageMarks(){
+      try{
+       String subAverage="SELECT AVG(total) FROM result";
+       stmt=conn.createStatement();
+       ResultSet subav=stmt.executeQuery(subAverage);
+       subav.next();
+        System.out.println("Average Total marks:: "+subav.getInt(1));
+       }catch(SQLException e){
+       e.printStackTrace();
+       }
+   
    }
    void closeConnection(){
         if (conn != null)
@@ -165,9 +223,20 @@ class student{
              break;
              case 2:System.out.println("\nTotal Students: "+s.totalStudents());
              break;
-             case 3: System.out.println("\nAverage marks is "+s.AverageInSubject());
+             case 3: s.AverageInSubject();
              break;
              case 4: System.out.println("Topper is: "+s.findTopper());
+             break;
+             case 5: System.out.println("First Topper:: "+s.findTopper());
+                     s.secondThird();
+             break;
+             case 6: s.subjectToppers(1);
+                     s.subjectToppers(2);
+                     s.subjectToppers(3);
+             break;
+             case 7:s.averageMarks(); 
+             break;
+             case 8: s.secondThird();
              break;
              case 0: s.closeConnection();
                         System.exit(0);
