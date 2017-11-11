@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<script type="text/javascript">
+		var loginData=[
+				 ["ramesh",'pass111'],
+				 ['viraj','abc123'],
+				 ['ankit','ahlawat70'],
+				 ['hemraj','hems007'],
+				];
+		function checkUsername(name){
+			if(name.replace(/\s+/g, '').length<4) //remove white spaces and check length
+				alert("Minimum 4 characters");
+			pat=/[^a-zA-Z]/; //find anything except a-zA-Z
+			if (result=name.match(pat))
+		 		alert("Name can only contain letters");
+		}
+		function checkPassword(pass){
+			if(pass.length<6)
+				alert("Atleast 6 characters required");
+ 			var pat=/((^[0-9]+[a-z]+)|(^[a-z]+[0-9]+))+[0-9a-z]+$/i; //allow only alphanumeric
+			if(!pass.match(pat))
+				alert("Must be Alphanumeric")
+		}
+		function validate(){
+			var flag=0;
+			var formId=document.getElementById('regForm');
+			if(formId.elements[0].value=="")
+				alert("Provide username.");
+			if(formId.elements[1].value=="")
+				alert("Enter Password");
+			for(var i=0;i<loginData.length;i++){
+				for( var j=0;j<2;j++){
+					if(formId.elements[0].value==loginData[i][0] && formId.elements[1].value==loginData[i][1]){
+						flag=1; break;
+					}
+				}
+			}	
+			if(flag==1) {
+					alert("Login Successful. This page wil reload now..");
+						location.reload();
+			}else alert("Invalid Credentials")
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<h1>Validating Login Credentials</h1> <h3>(using JavaScript)</h3> 
+	</header>
+	<article>
+		<form id="regForm">
+			<input type="text" name="username" placeholder="Username" onblur="checkUsername(this.value)"><br />
+			<input type="password" name="password" placeholder="password" onblur="checkPassword(this.value)"><p/>
+			<input type="button" name="submit" value="Submit" onclick="validate()" >
+		</form>
+	</article>
+	<footer>
+		Code by: Kumar Prateek Viraj
+	</footer>
+</body>
+<style type="text/css">
+ 	body{
+ 		text-align: center;
+ 	}
+	header,footer{
+		text-align: center;
+		background-color: black;
+		color: white;
+	}
+	input{
+		text-align: center;
+		width: 200px;
+		padding: 8px;
+		margin-bottom: 5px;
+	}
+</style>
+</html>

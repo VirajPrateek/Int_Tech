@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+	<header>
+		<h1>Calculator Simulator</h1><h3>(Using JSP)</h3>
+	</header>
+	<article>
+	<form action="operate.jsp" method="post">
+		 <input type="number" name="first" placeholder="First Operand"><br />
+		 <input type="number" name="second" placeholder="Second Operand"><br/>
+		 <input type="radio" name="operation" value="a">Addition
+		 <input type="radio" name="operation" value="s">Subtraction
+		 <input type="radio" name="operation" value="m">Multiplication
+	<br>
+	 <input type="submit" value="Calculate">
+	</form>
+	</article>
+	<footer>
+		Code by: Kumar Prateek Viraj
+	</footer>
+</body>
+<style type="text/css">
+ 	body{
+ 		text-align: center;
+ 	}
+	header,footer{
+		text-align: center;
+		background-color: black;
+		color: white;
+	}
+	input[type="number"],input[type="submit"]{
+		text-align: center;
+		width: 200px;
+		padding: 8px;
+		margin-bottom: 5px;
+	}
+</style>
+</html>
