@@ -12,7 +12,7 @@
 			}
 		}
 		function viewform(toShow){
-			for(i=5;i>0;i--){
+			for(i=6;i>0;i--){
 				toHide="f"+i; 
 				document.getElementById(toHide).style.display='none'; 
 			}
@@ -61,17 +61,58 @@
 				<table id="stackTable"></table>
 			</form>
 			<form id="f5" style="display: none;">
-				<input type="button" name="timer" value="Start Timer" onclick="setTimeout(changeColor,3000)">
+				<input type="button" name="timer" value="Start Timer" 
+					onclick="setTimeout(changeColor,3000)">
 				<div id="sample">
 					<h2>Color of this text will be changed.<br/> Wait 3 seconds..</h2>
 				</div><br/>
-				<input type="button" name="move" value="Start Moving" onclick="startMoving()">
+				<input type="button" name="move" value="Start Moving" 
+					onclick="startMoving(); document.getElementById('info').style.display='none'">
 				<div id="mydiv">
 					<img src="myimage.png" id='myimage'>
 				</div><p>
-				<pre>
+				<pre id="info">
 				The image used has been recreated by the author himself. <Copyleft>
 				*CSS has been used  to animate elements.</pre>
+			</form>
+			<form id="f6" style=" display: none;">
+				<fieldset>
+				<h2>The user registration is same as in Question 1.</h2><br/>
+					<h3>Here, only the feedback form will be validated.</h3>
+					<table align="center">
+						<tr>
+							<td>I am a </td>
+							<td><input type="radio" name="person" value="t">Teacher</td>
+							<td><input type="radio" name="person" value="s">Student</td>
+						</tr>
+						<tr>
+							<td>I can code in:</td>
+							<td><input type="checkbox" name="lang"> Assembly<br/></td>
+							<td><input type="checkbox" name="lang"> Scala<br/></td>
+							<td><input type="checkbox" name="lang"> Brainfuck<br/></td>
+							<td><input type="checkbox" name="lang"> Kotlin<br/></td>
+						</tr>
+						<tr>
+							<td>I am coding for: </td>
+							<td><select>
+								<option value="min">0-2 years</option>
+								<option value="min">2-5 years</option>
+								<option value="min">>5 years</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td>My feedback for the author of this code</td>
+							<td>
+								<textarea name="feedback" rows="4" cols="40"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="button" value="submit" onclick="validation()">
+							</td>
+						</tr>
+					</table>
+				</fieldset>
 			</form>
 		</article>
 		<section id="code-section">
@@ -129,6 +170,11 @@
 	#f4 table{
 		border-style: double;
 		border-top: none;
+	}
+
+	#f6 table td{
+		border-bottom: 1px solid #ddd;
+		padding: 20px;
 	}
 	header,footer{
 		text-align: center;
