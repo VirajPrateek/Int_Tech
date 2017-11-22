@@ -46,12 +46,12 @@ function printDOB(mydob){
 	var months=new Array(12);
 	months[0]="January";months[1]="February";months[2]="March";months[3]="April";months[4]="May";months[5]="June";
 	months[6]="July";months[7]="August";months[8]="September";months[9]="October";months[10]="November";months[11]="December";
-	var msec = Date.parse(mydob);
-	var d = new Date(msec);
+	var parsedDate = Date.parse(mydob);
+	var d = new Date(parsedDate);
 	var dayInWords=days[d.getDay()];
 	var monthInWords=months[d.getMonth()];
 	var birthday=dayInWords+", "+monthInWords+" "+d.getDate()+", "+d.getFullYear();
-	if(mydob=="1997-07-03") alert("Amazing! It's Kumar Prateek's Birthday"); //easter-egg
+	if(birthday=="Thursday, July 3, 1997") alert("Amazing! It's Kumar Prateek's Birthday"); //easter-egg
 	document.getElementById('birthdayBash').innerHTML="So, Your Birthday is on "+birthday;
 }
 function storeIt(element){
@@ -62,7 +62,7 @@ function storeIt(element){
 function bubbleSort(){ 
 	for(i=0;i<bubbleArray.length;i++){
 		for(j=0; j<bubbleArray.length;j++){
-			if(parseInt(bubbleArray[i])<parseInt(bubbleArray[j])){//is parseInt() really necessary?
+			if(parseInt(bubbleArray[i])<parseInt(bubbleArray[j])){//is parseInt() really necessary? -IDTS.
 				var temp=bubbleArray[i];
 				bubbleArray[i]=bubbleArray[j];
 				bubbleArray[j]=temp;
@@ -91,4 +91,8 @@ function popIt(){
   }
 }
 
-
+function changeColor(){
+	var sample=document.getElementById('sample');
+	sample.style.color="red";
+	sample.innerHTML+="Yay!! Code-Red";
+}
