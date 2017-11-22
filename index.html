@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,4 +124,131 @@
 		color: white;
 	}
 </style>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Int-Tech</title>
+	<script type="text/javascript" src="answer_script.js"></script>
+	<script type="text/javascript">
+		function displayList(){
+			for(i=6;i>0;i--){
+				var table = document.getElementById("quesTable");
+			    var row = table.insertRow(0);
+			    row.innerHTML ="<button id='"+i+"' onclick='viewform(this.id)'>Question"+i+"</button>";
+			}
+		}
+		function viewform(toShow){
+			for(i=5;i>0;i--){
+				toHide="f"+i; 
+				document.getElementById(toHide).style.display='none'; 
+			}
+			toShow="f"+toShow;
+			document.getElementById(toShow).style.display='block';
+		}
+	</script>
+</head>
+<body onload="displayList()">
+	<div class="container">
+		<header>
+			<h1>Internet Technologies</h1>
+			<h2>--Javascript--</h2>
+		</header>
+		<nav>
+			<table id="quesTable">
+			</table>	
+		</nav>
+		<article>
+			<form id="f1">
+				<input type="number" name="roll" onblur="check_roll(this.value);" placeholder="Roll Number"><br />
+				<input type="text" name="name" onblur="check_name(this.value);" placeholder="Your Name"><br />
+				<input type="date" id="dob" placeholder="Date Of Birth"><br />
+				<input type="password" name="pass" placeholder="Password" onblur="staticPasswordProtection(this.value)"><br />
+				<input type="password" name="cpass" placeholder="Confirm Password" onblur="confirmPassword(this.value)"><br />
+				<input type="button" name="submit" value="Submit" onclick="validate();
+				printDOB(document.getElementById('dob').value)">
+				<p/> <span id="birthdayBash"></span>
+			</form>
+			<form id="f2" style="display: none;">
+				<h2>This has been embedded in Question 1</h2>
+			</form>
+			<form id="f3" style="display: none;">
+				<h2>Bubble Sort</h2>
+				<input type="number" id="bubbleInput" placeholder="Input Unsorted data">
+				<input type="button" value='Insert' onclick="storeIt(document.getElementById('bubbleInput').value)">
+				<p /><span id="unsorted">Unsorted List: </span><p />
+				<input type="button" value="Sort Now" onclick="bubbleSort()"><br/>
+				<span id="sorted"> Sorted List: </span>
+			</form>
+			<form id="f4" style="display: none;">
+				<h2>Implementing Stack</h2>
+				<input type="number" id="stack" placeholder="Your Input">
+				<input type="button" name="push" value="Push" onclick="pushIt(document.getElementById('stack').value);"><br />
+				<input type="button" name="pop" value="Pop" onclick="popIt()">
+				<table id="stackTable"></table>
+			</form>
+			<form id="f5" style="display: none;">
+				<input type="button" name="timer" value="Start Timer" onclick="setTimeout(changeColor,3000)">
+				<div id="sample">
+					<h2>Color of this text will be changed.<br/> Wait 3 seconds..</h2>
+				</div>
+			</form>
+		</article>
+		<section id="code-section">
+			
+		</section>
+		<footer>
+			Code by: Kumar Prateek Viraj
+		</footer>
+		
+	</div>
+</body>
+<style type="text/css">
+	nav{
+		float: left;
+		max-width: 160px;
+		margin-top: 50px;
+		padding: 1em;
+		font-size: 25px;
+	}
+	nav button{
+		background-color: grey;
+		width: 140px;
+		padding-top: 18px;
+	}
+	nav button:hover{
+		background-color: green;
+	}
+	article {
+	    margin-left: 170px;
+	    border-left: 1px solid gray;
+	    padding: 0.2em;
+	    overflow: hidden;
+	    min-height: 420px;
+	    text-align: center;
+	}
+	article #f1 input{
+		width: 180px;
+		padding: 8px;
+		margin-bottom: 12px;
+		border-radius: 8px;
+		border-style: groove;
+	}
+	article #f1 input:hover{
+		width: 250px;
+		animation: ease-in-out;
+		transition-duration: 0.3s;
+		border-color: #667766;
+	}
+	#f4 table{
+		border-style: double;
+		border-top: none;
+	}
+	header,footer{
+		text-align: center;
+		background-color: black;
+		color: white;
+	}
+</style>
+>>>>>>> ebd2eb7026032ffa05ef97921b43a8fbfdde6887
 </html>
