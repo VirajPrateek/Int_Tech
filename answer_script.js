@@ -112,3 +112,27 @@ function startMoving(){
     } 
   }
 }
+
+function validation(){
+	var form=document.getElementById('f6');
+	var radio=document.getElementsByName('person');
+	var person;
+	var flag=0;
+	if(radio[0].checked == true)
+		person="Teacher";
+		else if(radio[1].checked == true)
+		person="Student";
+		else alert("Teacher/Student? What are you?");
+	var lang=document.getElementsByName('lang');
+	for(i=0;i<4;i++){
+		if(lang[i].checked==true){
+			flag=1;
+			break;
+		}	
+	}if(flag==0) alert("You must select one language!");
+	var feedback = document.getElementsByName('feedback');
+	var values = feedback.value; 
+		if(values == null)
+		alert("Must give feedback!");
+	else alert("Submitted!")
+}
