@@ -57,7 +57,9 @@ class BankAccount{ //core banking facilities
 		}
 		for(BankAccount c: customer_list) pw.println(c.getName()+"  "+c.get_Account_no()+"\n");
 	}	
-	void tax_deduction(){}
+	void tax_deduction(){/*deducts 15% for 15000/- and above. 7% for 10000/- to 15000/- and 5% for 0- 10000/- */
+
+	}
 
 	float getTotalbalance(){
 		float totalBal=0;
@@ -67,7 +69,8 @@ class BankAccount{ //core banking facilities
 		return totalBal;
 	}
 	void minMaxAmount(){
-		float minBal=0;float maxBal=0;
+		float minBal=customer_list.get(0).get_Balance();
+		float maxBal=minBal;
 		for(BankAccount cu:customer_list){
 			if(cu.get_Balance()<minBal) minBal=cu.get_Balance();
 			else if(cu.get_Balance()>maxBal) maxBal=cu.get_Balance();
